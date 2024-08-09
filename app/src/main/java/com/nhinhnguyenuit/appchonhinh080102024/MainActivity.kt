@@ -1,6 +1,8 @@
 package com.nhinhnguyenuit.appchonhinh080102024
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -28,6 +30,18 @@ class MainActivity : AppCompatActivity() {
         imgRandom = findViewById(R.id.image_view_random)
         imgUserSelect = findViewById(R.id.image_view_user_select)
         setImageRandom(imgRandom)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main,menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.item_random -> setImageRandom(imgRandom)
+        }
+        return true
     }
 
     private fun setImageRandom(imageView: ImageView?) {
