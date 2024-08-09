@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">AppChonHinh080102024</string>
+    <array name="array_animal">
+        <item>bo</item>
+        <item>bocanhcung</item>
+        <item>bongua</item>
+        <item>cachep</item>
+        <item>cadia</item>
+        <item>chimcanhcut</item>
+        <item>cho</item>
+        <item>chodom</item>
+        <item>chuonchuon</item>
+        <item>bocanhcung</item>
+        <item>ech</item>
+        <item>heo</item>
+        <item>khi</item>
+        <item>meoden</item>
+        <item>meolucky</item>
+        <item>meotrang</item>
+        <item>rua</item>
+        <item>soi</item>
+        <item>void</item>
+    </array>
 </resources>
