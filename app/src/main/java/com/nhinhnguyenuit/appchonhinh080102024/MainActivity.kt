@@ -1,13 +1,19 @@
 package com.nhinhnguyenuit.appchonhinh080102024
 
+import android.content.Intent
 import android.os.Bundle
+import android.provider.Telephony.Mms.Intents
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import kotlinx.coroutines.newSingleThreadContext
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
@@ -30,6 +36,11 @@ class MainActivity : AppCompatActivity() {
         imgRandom = findViewById(R.id.image_view_random)
         imgUserSelect = findViewById(R.id.image_view_user_select)
         setImageRandom(imgRandom)
+        imgUserSelect?.setOnClickListener {
+            val intent = Intent(this, MainActivity2::class.java)
+            startActivity(intent)
+        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -40,6 +51,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.item_random -> setImageRandom(imgRandom)
+            R.id.item_share_facebook -> setImageRandom(imgUserSelect)
         }
         return true
     }
@@ -49,6 +61,7 @@ class MainActivity : AppCompatActivity() {
         val indexRandom = Random.nextInt(arrNameAnimals.size)
         val resourceRandom =
             resources.getIdentifier(arrNameAnimals[indexRandom], "drawable", packageName)
-        imgRandom?.setImageResource(resourceRandom)
+        imageView.setImageResource(resourceRandom)
     }
+
 }
