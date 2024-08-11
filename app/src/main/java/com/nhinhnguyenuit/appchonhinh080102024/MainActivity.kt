@@ -40,7 +40,9 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity2::class.java)
             startActivity(intent)
         }
-
+        val imageResId = intent.getIntExtra("IMAGE_RES_ID", R.drawable.nophoto)
+        imgUserSelect?.setImageDrawable(ContextCompat.getDrawable(this, imageResId))
+        Log.d("nhinhnv", imageResId.toString())
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
