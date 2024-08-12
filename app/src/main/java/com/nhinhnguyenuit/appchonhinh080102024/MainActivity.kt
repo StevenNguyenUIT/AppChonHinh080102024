@@ -8,6 +8,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -36,22 +37,26 @@ class MainActivity : AppCompatActivity() {
         imgRandom = findViewById(R.id.image_view_random)
         imgUserSelect = findViewById(R.id.image_view_user_select)
         setImageRandom(imgRandom)
+//        imgUserSelect?.setOnClickListener {
+//            val intent = Intent(this, MainActivity2::class.java)
+//            startActivity(intent)
+//        }
+//        val imageResId = intent.getIntExtra("IMAGE_RES_ID", R.drawable.nophoto)
+//        imgUserSelect?.setImageDrawable(ContextCompat.getDrawable(this, imageResId))
+//        Log.d("nhinhnv", imageResId.toString())
         imgUserSelect?.setOnClickListener {
-            val intent = Intent(this, MainActivity2::class.java)
-            startActivity(intent)
+            val intent = Intent(this@MainActivity, ListAnimalActivity::class.java)
+            launcherListAnimal.launch(intent)
         }
-        val imageResId = intent.getIntExtra("IMAGE_RES_ID", R.drawable.nophoto)
-        imgUserSelect?.setImageDrawable(ContextCompat.getDrawable(this, imageResId))
-        Log.d("nhinhnv", imageResId.toString())
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_main,menu)
+        menuInflater.inflate(R.menu.menu_main, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
+        when (item.itemId) {
             R.id.item_random -> setImageRandom(imgRandom)
             R.id.item_share_facebook -> setImageRandom(imgUserSelect)
         }
@@ -65,5 +70,9 @@ class MainActivity : AppCompatActivity() {
             resources.getIdentifier(arrNameAnimals[indexRandom], "drawable", packageName)
         imageView.setImageResource(resourceRandom)
     }
+
+    private val launcherListAnimal = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {result ->
+
+        }
 
 }
