@@ -1,11 +1,13 @@
 package com.nhinhnguyenuit.appchonhinh080102024
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TableLayout
 import android.widget.TableRow
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -40,14 +42,22 @@ class ListAnimalActivity : AppCompatActivity() {
         val totalRow = 6
         val totalColumn = 3
         var index = 0
+        var resource: Int
         for (i in 0 until totalRow){
             val tableRow = TableRow(this)
             for (y in 0 until totalColumn){
-                val imageView = ImageView(this)
+                var imageView = ImageView(this)
                 index = (i*3) + y
-                val resourceRandom =
-                    resources.getIdentifier(arrNameAnimals[index], "drawable", packageName)
-                imageView.setImageResource(resourceRandom)
+                resource = resources.getIdentifier(arrNameAnimals[index], "drawable", packageName)
+                imageView.setImageResource(resource)
+                imageView.tag = resource
+                imageView.setOnClickListener {
+//                    Toast.makeText(this@ListAnimalActivity, imageView.tag.toString(),Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this@ListAnimalActivity, MainActivity::class.java)
+                    intent.putExtra("resource", (imageView.tag as? Int)?:0)
+                    setResult(RESULT_OK, intent)
+                    finish()
+                }
                 tableRow.addView(imageView)
             }
             tableLayout?.addView(tableRow)
